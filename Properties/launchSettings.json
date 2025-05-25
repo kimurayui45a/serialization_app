@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "SerializationApp": {
+      "commandName": "Project",
+      "commandLineArgs": "C:\\Users\\edika\\Desktop\\serialization_app\\serialization.json"
+    }
+  }
+}
