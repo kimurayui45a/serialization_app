@@ -123,7 +123,7 @@ namespace SerializationApp
             //    Summary = "Hot"
             //};
 
-            // 出力するJSONファイルのファイル名を指定
+            //// 出力するJSONファイルのファイル名を指定
             //string fileName = "WeatherForecast.json";
 
             //// weatherForecastオブジェクトをJSON文字列に変換（シリアル化）
@@ -136,7 +136,7 @@ namespace SerializationApp
             //Console.WriteLine(File.ReadAllText(fileName));
 
 
-            // 【デスクトップに出力する場合】
+            ////【デスクトップに出力する場合】
             //// デスクトップパスの取得
             //string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory);
 
