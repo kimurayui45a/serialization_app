@@ -20,10 +20,10 @@ namespace SerializationApp
             //};
 
 
-            //// コマンドライン引数から出力ファイルパスを取得
+            //// コマンドライン引数にパスが登録されているか確認
             //if (args.Length == 0)
             //{
-            //    Console.WriteLine("出力先のファイルパスをコマンドライン引数で指定してください。");
+            //    Console.WriteLine("コマンドライン引数が設定されていません");
             //    return;
             //}
 
@@ -51,10 +51,12 @@ namespace SerializationApp
             // JSONファイルを読み込む
             string json = File.ReadAllText(args[0]);
 
-            // 逆シリアル化してオブジェクトに戻す
+            //// 逆シリアル化してオブジェクトに戻す
             var renameData = JsonSerializer.Deserialize<RenameData>(json);
 
-            // 中身を表示（ループで1件ずつ）、nullの可能性を考慮
+            //Console.WriteLine(json);
+
+            //// 中身を表示（ループで1件ずつ）、nullの可能性を考慮
             //if (renameData?.Datas != null)
             //{
             //    foreach (var file in renameData.Datas)
@@ -63,8 +65,9 @@ namespace SerializationApp
             //    }
             //}
 
-            // コンソールアプリのディレクトリ内に「Text1.txt」を置く場合
-            //if (renameData?.Datas != null) 
+            // 宿題3
+            //コンソールアプリのディレクトリ内に「Text1.txt」を置く場合
+            //if (renameData?.Datas != null)
             //{
             //    // 各ファイルをリネーム
             //    foreach (var file in renameData.Datas)
@@ -72,7 +75,7 @@ namespace SerializationApp
             //        if (File.Exists(file.Path))
             //        {
             //            File.Move(file.Path, file.RenamePath); // ← リネーム処理
-            //            Console.WriteLine($"{file.Path} → {file.RenamePath} にリネームしました");
+            //            Console.WriteLine($"{file.Path} を {file.RenamePath} にリネーム");
             //        }
             //        else
             //        {
@@ -85,7 +88,15 @@ namespace SerializationApp
 
             // コマンドライン引数で指定したJsonと同じディレクトリ内に「Text1.txt」を置く場合
             string jsonPath = args[0];
-            string baseDir = Path.GetDirectoryName(jsonPath)!;
+            //string baseDir = Path.GetDirectoryName(jsonPath)!;  //これはよくない
+
+            string? baseDir = Path.GetDirectoryName(jsonPath);
+            //安全な確認
+            if (string.IsNullOrEmpty(baseDir))
+            {
+                Console.WriteLine("無効なファイルパスです。");
+                return;
+            }
 
 
             if (renameData?.Datas != null)
@@ -99,7 +110,7 @@ namespace SerializationApp
                     if (File.Exists(oldPath))
                     {
                         File.Move(oldPath, newPath);
-                        Console.WriteLine($"{oldPath} を {newPath} にリネームしました");
+                        Console.WriteLine($"{oldPath} を {newPath} にリネーム");
                     }
                     else
                     {
